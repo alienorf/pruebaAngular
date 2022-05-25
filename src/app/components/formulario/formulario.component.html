@@ -1,0 +1,86 @@
+<div class="formulario" >
+    <h1>Formulario</h1>
+
+    <form [formGroup]="person" (ngSubmit)="onsubmit()">
+     
+      <mat-form-field appearance="fill">
+        <label>Introduce tu nombre</label>
+        <input matInput #input id="nombre" type="text" placeholder="Nombre (min 3 car)" formControlName="nombre">      
+      </mat-form-field>
+    
+      <br/>
+      <mat-form-field appearance="fill">
+        <label>Introduce tus apellidos</label>
+        <input matInput #input id="apellidos" type="text" placeholder="Apellidos (min 3 car)" formControlName="apellidos"/>
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field appearance="fill">
+        <label>Introduce tu edad</label>
+        <input matInput type="number" id="edad" placeholder="Edad (entre 0 y 125)" formControlName="edad"/>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field appearance="fill">
+        <label>Introduce tu DNI</label>
+        <input matInput type="text" id="DNI" placeholder="DNI (tipo 00000000X)" formControlName="dni"/>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field appearance="fill">
+        <label>Introduce tu fecha de cumpleanos</label>
+        <input matInput type="date" placeholder="Fecha de cumpleaños" formControlName="cumpleanos"/>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field appearance="fill">
+        <label>Introduce tu color favorito</label>
+        <input matInput type="text" placeholder="Color favorito (mini 3 car)" formControlName="colorFavorito"/>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field  appearance="fill">
+        <label> Elige tu sexo </label>
+        <mat-select  formControlName="sexo" placeholder="Seleccciona tu sexo">
+          <mat-option value="Hombre">Hombre</mat-option>
+          <mat-option value="Mujer">Mujer</mat-option>
+          <mat-option value="Otro">Otro</mat-option>
+          <mat-option value="No specificado">No specificado</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br />
+
+      <button type = "submit" > Enviar tus datos</button>
+
+    </form>
+  </div>
+
+  <table>
+    <thead>
+        <th>Posición</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Edad</th>
+        <th>DNI</th>
+        <th>Cumpleanos</th>
+        <th>Color favorito</th>
+        <th>Sexo</th>
+        <th> Borrar </th>
+        <th> Modificar</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let persona of personas; let i = index">
+            <td>{{i}}</td>
+            <td>{{persona.nombre}}</td>
+            <td>{{persona.apellidos}}</td>
+            <td>{{persona.edad}}</td>
+            <td>{{persona.dni}}</td>
+            <td>{{persona.cumpleanos | date:'dd/MM/yyyy'}}</td>
+            <td>{{persona.colorFavorito}}</td>
+            <td>{{persona.sexo}}</td>
+            <td> <button mat-flat-button (click)="borraritem( i )" >Borrar </button></td>
+            <td> <button mat-flat-button (click)="edititem(i,persona)" >Modificar</button></td>
+      <td>
+        </tr>
+    </tbody>
+</table>
